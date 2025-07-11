@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yatin Kashyap</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="experience">
+      <canvas id="experience-canvas"></canvas>
+    </div>
+    <div class="modal">
+      <div class="modal-wrapper">
+        <div class="modal-header">
+          <div class="modal-title"></div>
+          <button class="modal-exit-button"></button>
+        </div>
+        <div class="modal-content">
+          <div class="modal-content-wrapper">
+            <a class="modal-link" href="#" target="_blank">View Project</a>
+            <div class="modal-description">
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@v0.149.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.149.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="/main.js" type="module"></script>
+  </body>
+</html>
