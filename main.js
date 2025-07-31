@@ -381,6 +381,89 @@ document.querySelector(".modal-exit-button").addEventListener("click", () => {
   document.querySelector(".modal").classList.remove("active");
 });
 
+// === Mobile Controls Setup ===
+function setupMobileControls() {
+  const mobileControls = document.getElementById('mobile-controls');
+  const controlButtons = document.querySelectorAll('.control-btn');
+  
+  // Check if device is mobile/touch
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                   ('ontouchstart' in window) || 
+                   (navigator.maxTouchPoints > 0);
+  
+  // Show controls on mobile devices
+  if (isMobile) {
+    mobileControls.style.display = 'flex';
+  }
+  
+  // Add event listeners for each control button
+  controlButtons.forEach(button => {
+    const key = button.getAttribute('data-key');
+    
+    // Handle touch start (button press)
+    button.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      handleMobileMovement(key);
+      button.classList.add('active');
+    });
+    
+    // Handle touch end (button release)
+    button.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      button.classList.remove('active');
+    });
+    
+    // Handle mouse events for testing on desktop
+    button.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      handleMobileMovement(key);
+      button.classList.add('active');
+    });
+    
+    button.addEventListener('mouseup', (e) => {
+      e.preventDefault();
+      button.classList.remove('active');
+    });
+    
+    // Prevent context menu on long press
+    button.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+  });
+}
+
+// === Mobile Movement Handler Function ===
+function handleMobileMovement(key) {
+  if (!character.instance || character.isMoving) return;
+
+  const move = character.moveDistance;
+  const pos = character.instance.position.clone();
+
+  switch (key.toLowerCase()) {
+    case "w":
+      pos.z -= move;
+      break;
+    case "s":
+      pos.z += move;
+      break;
+    case "a":
+      pos.x -= move;
+      break;
+    case "d":
+      pos.x += move;
+      break;
+    default:
+      return;
+  }
+
+  moveCharacterTo(pos);
+}
+
+// Initialize mobile controls when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  setupMobileControls();
+});
+
 // === Animation Loop ===
 function animate() {
   controls.update();

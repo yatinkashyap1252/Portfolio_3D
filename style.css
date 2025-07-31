@@ -151,3 +151,98 @@ body {
   font-weight: 900;
   font-size: 1.2rem;
 }
+.control-btn.active {
+  background: rgba(0, 123, 255, 0.9) !important;
+  color: white !important;
+  transform: scale(0.9) !important;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4) !important;
+}
+
+/* === Mobile Controls === */
+.mobile-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  display: none; /* Hidden by default, shown on mobile */
+  flex-direction: column;
+  gap: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.control-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.control-btn {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 24px;
+  color: #333;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.05);
+}
+
+.control-btn:active {
+  background: rgba(0, 123, 255, 0.8);
+  color: white;
+  transform: scale(0.95);
+}
+
+.control-btn span {
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* Show mobile controls on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .mobile-controls {
+    display: flex;
+  }
+}
+
+/* Alternative: Show on small screens */
+@media (max-width: 768px) {
+  .mobile-controls {
+    display: flex;
+  }
+  
+  .control-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-controls {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .control-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+}
